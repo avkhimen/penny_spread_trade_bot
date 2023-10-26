@@ -1,6 +1,6 @@
 import kraken.api as kraken
-import poloniex.__init__ as poloniex
-import bittrex.bittrex as bittrex
+#import poloniex.__init__ as poloniex
+#import bittrex.bittrex as bittrex
 import asyncio
 
 def get_prices_volumes(kraken, poloniex, bittrex, currency):
