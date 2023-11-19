@@ -1,6 +1,4 @@
 import kraken.api as kraken
-#import poloniex.__init__ as poloniex
-#import bittrex.bittrex as bittrex
 import asyncio
 
 def get_prices_volumes(kraken, poloniex, bittrex, currency):
@@ -27,7 +25,7 @@ def calculate_balances(kraken, currency):
 		kraken_balance = float(kraken_balance_data[{'BITCOIN':'XXBT','RIPPLE':'XXRP','ETC_CLASSIC':'XETC',\
 			'ATOM':'ATOM','MONERO':'XXMR','DASH':'DASH','STELLAR':'XXLM'}[currency]])
 		kraken_BTC_balance = float(kraken_balance_data['XXBT'])
-	except:
+	except Exception as e:
 		kraken_balance = 0
 		kraken_BTC_balance = 0
 

@@ -1,32 +1,19 @@
 import kraken.api as kraken
-#import poloniex.__init__ as poloniex
-#import bittrex.bittrex as bittrex
 from support_functions import load_key, get_input_args
+import os
 
 def initialize_accounts():
-	#Kraken
-    Vadim_Kraken = kraken.API()
-    #api_key_name = get_input_args().currency_pair
-    api_key_name = 'RIPPLE'
-    if api_key_name == "RIPPLE":
-        Vadim_Kraken.load_key(r"kraken/RIPPLE_KEY_FOLDER/key.txt")
-    elif api_key_name == "ETC_CLASSIC":
-        Vadim_Kraken.load_key(r"kraken/ETC_CLASSIC_KEY_FOLDER/key.txt")
-    elif api_key_name == "ATOM":
-        Vadim_Kraken.load_key(r"kraken/ATOM_KEY_FOLDER/key.txt")
-    elif api_key_name == "MONERO":
-        Vadim_Kraken.load_key(r"kraken/MONERO_KEY_FOLDER/key.txt")
-    elif api_key_name == "DASH":
-        Vadim_Kraken.load_key(r"kraken/DASH_KEY_FOLDER/key.txt")
-    elif api_key_name == "STELLAR":
-        Vadim_Kraken.load_key(r"kraken/STELLAR_KEY_FOLDER/key.txt")
 
-    # #Poloniex
-    # Vadim_Poloniex = poloniex.Poloniex()
-    # Vadim_Poloniex.load_key(r"poloniex/key.txt")
-    # #Bittrex
-    # api_key, api_secret = load_key(r"bittrex/key.txt")
-    # Vadim_Bittrex = bittrex.Bittrex(api_key = api_key, api_secret = api_secret)
-    # #return class instances
-    # return Vadim_Kraken, Vadim_Poloniex, Vadim_Bittrex
-    return Vadim_Kraken
+    kraken_client = kraken.API()
+
+    with open('keys.txt', 'a') as file:
+        l1 = str(os.environ['public_key']) + "\n"
+        l2 = str(os.environ['private_key']) + "\n"
+        file.writelines([l1, l2])
+        file.close()
+        
+    kraken_client.load_key("keys.txt")
+
+    os.remove("keys.txt")
+
+    return kraken_client
