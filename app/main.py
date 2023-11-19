@@ -1,16 +1,18 @@
 from utility_classes import PlaceLimitBuyOrder, PlaceLimitSellOrder
 import kraken.api as kraken
-import poloniex.__init__ as poloniex
-import bittrex.bittrex as bittrex
+#import poloniex.__init__ as poloniex
+#import bittrex.bittrex as bittrex
 from support_functions import get_input_args
 from variables import get_prices_volumes, calculate_balances
 from initialize_accounts import initialize_accounts
 import time
 import datetime
+import os
 
 def main():
 	
-	currency = get_input_args().currency_pair
+	#currency = get_input_args().currency_pair
+	currency = os.environ['currency']
 	kraken, poloniex, bittrex = initialize_accounts()
 
 	while True:
