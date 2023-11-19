@@ -14,3 +14,5 @@ services:
       - kraken_trading_pair=
       - poloniex_trading_pair=
       - bittrex_trading_pair=
+      - ripple_public_key
+      - ripple_private_key
