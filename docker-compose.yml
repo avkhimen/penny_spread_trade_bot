@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  penny_trader_dash:
+    build: 
+      context: ./docker
+      dockerfile: Dockerfile
+    ports:
+      - '5002:5002'
+    volumes:
+      - ./app:/home/jovyan/app
+    command: tail -F anything
+    environment:
+      - kraken_trading_pair=
+      - poloniex_trading_pair=
+      - bittrex_trading_pair=
