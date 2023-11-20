@@ -1,5 +1,4 @@
 import kraken.api as kraken
-from support_functions import load_key, get_input_args
 import os
 
 def initialize_accounts():

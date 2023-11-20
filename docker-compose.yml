@@ -12,8 +12,10 @@ services:
     #command: tail -F anything
     environment:
       - currency='RIPPLE'
-      - kraken_trading_pair=''
-      - poloniex_trading_pair=''
-      - bittrex_trading_pair=''
+      - coin_balance_ticker='XXRP'
+      - kraken_trading_pair='XRPXBT'
+      - kraken_price_volume_result_trading_pair='XXRPXXBT'
+      - poloniex_trading_pair='XRP_BTC'
+      - bittrex_trading_pair='XRP-BTC'
       - public_key=${ripple_public_key}
       - private_key=${ripple_private_key}

@@ -1,7 +1,7 @@
 from utility_classes import PlaceLimitBuyOrder, PlaceLimitSellOrder
 import kraken.api as kraken
 from support_functions import get_input_args
-from variables import get_prices_volumes, calculate_balances
+from volumes_balances import get_prices_volumes, calculate_balances
 from initialize_accounts import initialize_accounts
 import time
 import datetime
@@ -19,7 +19,7 @@ def main():
 	while True:
 		try:
 
-			kraken_BTC_balance, kraken_balance = calculate_balances(kraken_client, currency)
+			kraken_BTC_balance, kraken_balance = calculate_balances(kraken_client)
 
 			print('Calculating prices')
 			high_bid_0_kraken, low_ask_0_kraken, high_bid_0_poloniex, low_ask_0_poloniex, high_bid_0_bittrex, low_ask_0_bittrex = get_prices_volumes(kraken_client, poloniex, bittrex, currency)
