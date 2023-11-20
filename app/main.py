@@ -21,7 +21,7 @@ def main():
 
 			kraken_BTC_balance, kraken_balance = calculate_balances(kraken_client)
 
-			print('Calculating prices')
+			print('Calculating prices 1')
 			high_bid_0_kraken, low_ask_0_kraken, high_bid_0_poloniex, low_ask_0_poloniex, high_bid_0_bittrex, low_ask_0_bittrex = get_prices_volumes(kraken_client)
 
 			print('Cancelling existing buy order and placing new buy order')
@@ -30,7 +30,7 @@ def main():
 			print('Calculating balances')
 			kraken_BTC_balance, kraken_balance = calculate_balances(kraken_client)
 
-			print('Calculating prices')
+			print('Calculating prices 2')
 			high_bid_0_kraken, low_ask_0_kraken, high_bid_0_poloniex, low_ask_0_poloniex, high_bid_0_bittrex, low_ask_0_bittrex = get_prices_volumes(kraken_client)
 
 			print('Cancelling existing sell order and placing new sell order')
