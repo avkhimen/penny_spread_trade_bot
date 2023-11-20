@@ -22,19 +22,19 @@ def main():
 			kraken_BTC_balance, kraken_balance = calculate_balances(kraken_client)
 
 			print('Calculating prices')
-			high_bid_0_kraken, low_ask_0_kraken, high_bid_0_poloniex, low_ask_0_poloniex, high_bid_0_bittrex, low_ask_0_bittrex = get_prices_volumes(kraken_client, poloniex, bittrex, currency)
+			high_bid_0_kraken, low_ask_0_kraken, high_bid_0_poloniex, low_ask_0_poloniex, high_bid_0_bittrex, low_ask_0_bittrex = get_prices_volumes(kraken_client)
 
 			print('Cancelling existing buy order and placing new buy order')
-			PlaceLimitBuyOrder(currency, kraken_client, kraken_BTC_balance, high_bid_0_kraken, high_bid_0_poloniex, high_bid_0_bittrex, session).execute()
+			PlaceLimitBuyOrder(kraken_client, kraken_BTC_balance, high_bid_0_kraken, high_bid_0_poloniex, high_bid_0_bittrex).execute()
 
 			print('Calculating balances')
-			kraken_BTC_balance, kraken_balance = calculate_balances(kraken_client, poloniex, bittrex, currency)
+			kraken_BTC_balance, kraken_balance = calculate_balances(kraken_client)
 
 			print('Calculating prices')
-			high_bid_0_kraken, low_ask_0_kraken, high_bid_0_poloniex, low_ask_0_poloniex, high_bid_0_bittrex, low_ask_0_bittrex = get_prices_volumes(kraken_client, poloniex, bittrex, currency)
+			high_bid_0_kraken, low_ask_0_kraken, high_bid_0_poloniex, low_ask_0_poloniex, high_bid_0_bittrex, low_ask_0_bittrex = get_prices_volumes(kraken_client)
 
 			print('Cancelling existing sell order and placing new sell order')
-			PlaceLimitSellOrder(currency, kraken_client, kraken_balance, low_ask_0_bittrex, low_ask_0_poloniex, low_ask_0_kraken, session).execute()
+			PlaceLimitSellOrder(kraken_client, kraken_balance, low_ask_0_bittrex, low_ask_0_poloniex, low_ask_0_kraken).execute()
 
 			print("Timestamp: {} Kraken {} Balance: {} Kraken BTC Balance: {} Kraken price: {} Poloniex price: {} Bittrex price: {}"\
 				.format(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'), currency, \

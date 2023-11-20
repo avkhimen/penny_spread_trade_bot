@@ -3,12 +3,12 @@ import asyncio
 import os
 import requests
 
-def get_prices_volumes(kraken_client, poloniex, bittrex):
+def get_prices_volumes(kraken_client):
 	
 	loop = asyncio.new_event_loop()
 	task_kraken = loop.create_task(get_kraken_price_volume(kraken_client))
-	task_poloniex = loop.create_task(get_poloniex_price_volume(poloniex))
-	task_bittrex = loop.create_task(get_bittrex_price_volume(bittrex))
+	task_poloniex = loop.create_task(get_poloniex_price_volume())
+	task_bittrex = loop.create_task(get_bittrex_price_volume())
 	loop.run_until_complete(asyncio.wait([task_kraken, task_poloniex, task_bittrex]))
 	loop.close()
 
@@ -54,7 +54,7 @@ async def get_kraken_price_volume(kraken_client):
 
 	return high_bid_0_kraken, low_ask_0_kraken
 
-async def get_poloniex_price_volume(poloniex):
+async def get_poloniex_price_volume():
 
 	await asyncio.sleep(0)
 	poloniex_price_volume_data = requests.get(f"https://api.poloniex.com/markets/{os.environ['poloniex_trading_pair']}/orderBook").json()
