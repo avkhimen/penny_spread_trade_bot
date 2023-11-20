@@ -62,8 +62,7 @@ class PlaceLimitSellOrder():
 		self.low_ask_0_poloniex = low_ask_0_poloniex
 		self.low_ask_0_kraken = low_ask_0_kraken
 		self.limit_ask_COIN = round(max(0.5*(self.low_ask_0_bittrex+self.low_ask_0_poloniex)\
-			*(1.0+self.premium_to_average_ask),(self.low_ask_0_kraken-0.00000001)),{'DOGE':8,'RIPPLE':8,'BITCOIN':8,\
-		'ETC_CLASSIC':6,'ATOM':7,'MONERO':6,'MONERO':6,'DASH':5,'STELLAR':8}[self.currency])
+			*(1.0+self.premium_to_average_ask),(self.low_ask_0_kraken-0.00000001)), os.environ['kraken_limit_ask_COIN'])
 		self.limit_sell_amount_COIN = min(self.order_size,self.kraken_COIN_balance)
 		self.kraken_client = kraken_client
 
@@ -76,23 +75,16 @@ class PlaceLimitSellOrder():
 	def action_1(self):
 		orders = self.kraken.query_private('OpenOrders')['result']['open']
 		for key in orders:
-			if orders[key]['descr']['type'] == 'sell' and orders[key]['descr']['pair'] == {'DOGE':'XDGXBT','RIPPLE':'XRPXBT',\
-			'BITCOIN':'XBTUSD','ETC_CLASSIC':'ETCXBT','ATOM':'ATOMXBT','MONERO':'XMRXBT',\
-			'DASH':'DASHXBT','STELLAR':'XLMXBT'}[self.currency]:
+			if orders[key]['descr']['type'] == 'sell' and orders[key]['descr']['pair'] == os.environ['kraken_trading_pair']:
 				try:
 					cancelled_order = self.kraken.query_private('CancelOrder',{'txid':key})
-					if cancelled_order['result']['count'] == 1:
-						RecordCancelledOrders(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'), \
-							key, self.currency, self.session, "sell").create_record()
 				except Exception as e:
 					print(e)
 				else:
 					continue
 		limit_ask_COIN = '{:.8f}'.format(self.limit_ask_COIN)
 		try:
-			sell_order = self.kraken_COIN_balance, self.kraken.query_private('AddOrder',{'pair':{'DOGE':'XDGXBT','RIPPLE':'XRPXBT','BITCOIN':'XBTUSD',\
-				'ETC_CLASSIC':'ETCXBT','ATOM':'ATOMXBT','MONERO':'XMRXBT','DASH':'DASHXBT',\
-				'STELLAR':'XLMXBT'}[self.currency],'type':'sell','ordertype':'limit',\
+			sell_order = self.kraken_COIN_balance, self.kraken.query_private('AddOrder',{'pair': os.environ['kraken_trading_pair'],'type':'sell','ordertype':'limit',\
 				'price':limit_ask_COIN,'volume':self.limit_sell_amount_COIN})
 			if sell_order[1] == {'error':['EGeneral:Invalid arguments:volume']}:
 				raise InsufficientVolumeError

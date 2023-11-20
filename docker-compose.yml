@@ -22,5 +22,6 @@ services:
       - kraken_BTC_order_size=0.05
       - kraken_minimum_coin_order_size=8
       - kraken_premium_to_average_ask=0.0035
+      - kraken_limit_ask_COIN=8
       - public_key=${ripple_public_key}
       - private_key=${ripple_private_key}
