@@ -11,12 +11,12 @@ services:
       - ./app:/home/jovyan/app
     #command: tail -F anything
     environment:
-      - currency='RIPPLE'
-      - coin_balance_ticker='XXRP'
-      - kraken_trading_pair='XRPXBT'
-      - kraken_price_volume_result_trading_pair='XXRPXXBT'
-      - poloniex_trading_pair='XRP_BTC'
-      - bittrex_trading_pair='XRP-BTC'
+      - currency=RIPPLE
+      - coin_balance_ticker=XXRP
+      - kraken_trading_pair=XRPXBT
+      - kraken_price_volume_result_trading_pair=XXRPXXBT
+      - poloniex_trading_pair=XRP_BTC
+      - bittrex_trading_pair=XRP-BTC
       - kraken_discount_to_average_bid=0.0125
       - kraken_BTC_minimum_balance=0.05
       - kraken_BTC_order_size=0.05

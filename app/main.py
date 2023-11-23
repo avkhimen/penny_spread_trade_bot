@@ -22,7 +22,7 @@ def main():
 
 			kraken_BTC_balance, kraken_balance = calculate_balances(kraken_client)
 
-			logging.info(kraken_BTC_balance, kraken_balance)
+			# print(kraken_BTC_balance, kraken_balance)
 
 			logging.info('Calculating prices')
 			high_bid_0_kraken, low_ask_0_kraken, high_bid_0_poloniex, low_ask_0_poloniex, high_bid_0_bittrex, low_ask_0_bittrex = get_prices_volumes(kraken_client)
@@ -44,7 +44,7 @@ def main():
 			logging.info("Timestamp: {} Kraken {} Balance: {} Kraken BTC Balance: {} Kraken price: {} Poloniex price: {} Bittrex price: {}"\
 				.format(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'), currency, \
 				kraken_balance, kraken_BTC_balance, high_bid_0_kraken, high_bid_0_poloniex, high_bid_0_bittrex))
-
+			
 			time.sleep(10)
 		except Exception as e:
 			logging.info(e)
