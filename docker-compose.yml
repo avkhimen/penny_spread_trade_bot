@@ -25,3 +25,28 @@ services:
       - kraken_limit_ask_COIN=8
       - public_key=${ripple_public_key}
       - private_key=${ripple_private_key}
+
+  penny_trader_dash:
+    build: 
+      context: ./docker
+      dockerfile: Dockerfile
+    ports:
+      - '5003:5003'
+    volumes:
+      - ./app:/home/jovyan/app
+    #command: tail -F anything
+    environment:
+      - currency=RIPPLE
+      - coin_balance_ticker=DASH
+      - kraken_trading_pair=DASHXBT
+      - kraken_price_volume_result_trading_pair=DASHXBT
+      - poloniex_trading_pair=DASH_BTC
+      - bittrex_trading_pair=DASH-BTC
+      - kraken_discount_to_average_bid=0.0125
+      - kraken_BTC_minimum_balance=0.05
+      - kraken_BTC_order_size=0.05
+      - kraken_minimum_coin_order_size=5
+      - kraken_premium_to_average_ask=0.0035
+      - kraken_limit_ask_COIN=5
+      - public_key=${ripple_public_key}
+      - private_key=${ripple_private_key}
