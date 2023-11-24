@@ -36,7 +36,7 @@ services:
       - ./app:/home/jovyan/app
     #command: tail -F anything
     environment:
-      - currency=RIPPLE
+      - currency=DASH
       - coin_balance_ticker=DASH
       - kraken_trading_pair=DASHXBT
       - kraken_price_volume_result_trading_pair=DASHXBT
@@ -48,5 +48,55 @@ services:
       - kraken_minimum_coin_order_size=5
       - kraken_premium_to_average_ask=0.0035
       - kraken_limit_ask_COIN=5
+      - public_key=${ripple_public_key}
+      - private_key=${ripple_private_key}
+
+  penny_trader_atom:
+    build: 
+      context: ./docker
+      dockerfile: Dockerfile
+    ports:
+      - '5004:5004'
+    volumes:
+      - ./app:/home/jovyan/app
+    #command: tail -F anything
+    environment:
+      - currency=ATOM
+      - coin_balance_ticker=ATOM
+      - kraken_trading_pair=ATOMXBT
+      - kraken_price_volume_result_trading_pair=ATOMXBT
+      - poloniex_trading_pair=ATOM_BTC
+      - bittrex_trading_pair=ATOM-BTC
+      - kraken_discount_to_average_bid=0.015
+      - kraken_BTC_minimum_balance=0.05
+      - kraken_BTC_order_size=0.05
+      - kraken_minimum_coin_order_size=7
+      - kraken_premium_to_average_ask=0.004
+      - kraken_limit_ask_COIN=7
+      - public_key=${ripple_public_key}
+      - private_key=${ripple_private_key}
+
+  penny_trader_etc:
+    build: 
+      context: ./docker
+      dockerfile: Dockerfile
+    ports:
+      - '5005:5005'
+    volumes:
+      - ./app:/home/jovyan/app
+    #command: tail -F anything
+    environment:
+      - currency=ETC
+      - coin_balance_ticker=XETC
+      - kraken_trading_pair=ETCXBT
+      - kraken_price_volume_result_trading_pair=XETCXXBT
+      - poloniex_trading_pair=ETC_BTC
+      - bittrex_trading_pair=ETC-BTC
+      - kraken_discount_to_average_bid=0.02
+      - kraken_BTC_minimum_balance=0.05
+      - kraken_BTC_order_size=0.05
+      - kraken_minimum_coin_order_size=6
+      - kraken_premium_to_average_ask=0.005
+      - kraken_limit_ask_COIN=6
       - public_key=${ripple_public_key}
       - private_key=${ripple_private_key}
