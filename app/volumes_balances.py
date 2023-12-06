@@ -65,7 +65,7 @@ def get_bittrex_price_volume():
 def get_bitfinex_price_volume():
 
 	bitfinex_price_volume_data = requests.get(f"https://api.bitfinex.com/v1/book/{os.environ['bitfinex_trading_pair']}").json()
-	high_bid_0_bitfinex = float(bittrex_price_volume_data['bids'][0]['price'])
-	low_ask_0_bitfinex = float(bittrex_price_volume_data['asks'][0]['price'])
+	high_bid_0_bitfinex = float(bitfinex_price_volume_data['bids'][0]['price'])
+	low_ask_0_bitfinex = float(bitfinex_price_volume_data['asks'][0]['price'])
 
 	return high_bid_0_bitfinex, low_ask_0_bitfinex
