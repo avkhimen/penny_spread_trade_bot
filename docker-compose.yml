@@ -17,6 +17,7 @@ services:
       - kraken_price_volume_result_trading_pair=XXRPXXBT
       - poloniex_trading_pair=XRP_BTC
       - bittrex_trading_pair=XRP-BTC
+      - bitfinex_trading_pair=xrpbtc
       - kraken_discount_to_average_bid=0.0125
       - kraken_BTC_minimum_balance=0.05
       - kraken_BTC_order_size=0.05
@@ -42,6 +43,7 @@ services:
       - kraken_price_volume_result_trading_pair=DASHXBT
       - poloniex_trading_pair=DASH_BTC
       - bittrex_trading_pair=DASH-BTC
+      - bitfinex_trading_pair=dshbtc
       - kraken_discount_to_average_bid=0.0125
       - kraken_BTC_minimum_balance=0.05
       - kraken_BTC_order_size=0.05
@@ -67,6 +69,7 @@ services:
       - kraken_price_volume_result_trading_pair=ATOMXBT
       - poloniex_trading_pair=ATOM_BTC
       - bittrex_trading_pair=ATOM-BTC
+      - bitfinex_trading_pair=atobtc
       - kraken_discount_to_average_bid=0.015
       - kraken_BTC_minimum_balance=0.05
       - kraken_BTC_order_size=0.05
@@ -92,6 +95,7 @@ services:
       - kraken_price_volume_result_trading_pair=XETCXXBT
       - poloniex_trading_pair=ETC_BTC
       - bittrex_trading_pair=ETC-BTC
+      - bitfinex_trading_pair=atobtc
       - kraken_discount_to_average_bid=0.02
       - kraken_BTC_minimum_balance=0.05
       - kraken_BTC_order_size=0.05

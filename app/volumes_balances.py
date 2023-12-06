@@ -6,7 +6,8 @@ def get_prices_volumes(kraken_client):
 
 	high_bid_0_kraken, low_ask_0_kraken = get_kraken_price_volume(kraken_client)
 	high_bid_0_poloniex, low_ask_0_poloniex = get_poloniex_price_volume()
-	high_bid_0_bittrex, low_ask_0_bittrex = get_bittrex_price_volume()
+	#high_bid_0_bittrex, low_ask_0_bittrex = get_bittrex_price_volume()
+	high_bid_0_bittrex, low_ask_0_bittrex = get_bitfinex_price_volume()
 
 	return high_bid_0_kraken, low_ask_0_kraken, high_bid_0_poloniex, \
 	low_ask_0_poloniex, high_bid_0_bittrex, low_ask_0_bittrex
@@ -60,3 +61,11 @@ def get_bittrex_price_volume():
 	low_ask_0_bittrex = float(bittrex_price_volume_data['ask'][0]['rate'])
 
 	return high_bid_0_bittrex, low_ask_0_bittrex
+
+def get_bitfinex_price_volume():
+
+	bitfinex_price_volume_data = requests.get(f"https://api.bitfinex.com/v1/book/{os.environ['bitfinex_trading_pair']}").json()
+	high_bid_0_bitfinex = float(bittrex_price_volume_data['bids'][0]['price'])
+	low_ask_0_bitfinex = float(bittrex_price_volume_data['asks'][0]['price'])
+
+	return high_bid_0_bitfinex, low_ask_0_bitfinex
